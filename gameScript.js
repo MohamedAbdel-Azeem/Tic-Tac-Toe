@@ -1,4 +1,4 @@
-let game = (
+export let game = (
     function () {
         let board;
         
@@ -92,10 +92,10 @@ let game = (
     }
 )();
 
-game.startNewGame();
+// game.startNewGame();
 
 
-document.querySelector("#reset-button")
-.addEventListener("click", function () {
-    game.startNewGame();
-});
+// document.querySelector("#reset-button")
+// .addEventListener("click", function () {
+//     game.startNewGame();
+// });

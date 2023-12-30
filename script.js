@@ -1,3 +1,5 @@
+import { game } from "./gameScript.js";
+
 // Select the button and input elements
 const player1Button = document.getElementById('player-1-ready');
 const player1Input = player1Button.previousElementSibling;
@@ -65,8 +67,6 @@ function ifReady() {
         player1Card.style.transform = 'translateX(-160%)';
         
         player2Card.style.transform = 'translateX(160%)';
-    
+        game.startNewGame();
     }
 }
-
-ifReady();
