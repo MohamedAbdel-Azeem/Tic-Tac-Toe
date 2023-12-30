@@ -4,13 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe Game</title>
-    <script defer src="gameScript.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <link href="output.css" rel="stylesheet">
+    <link href="/output.css" rel="stylesheet">
 </head>
-<body>
-    <h1 class="text-3xl font-bold underline">Tic-Tac-Toe Game</h1>
-    <div id="game-board"></div>
-    <button id="reset-button">Reset Game</button>
+<body class="flex flex-col h-full w-full bg-cyan-800">
+    <nav class="w-full h-20 bg-sky-950 flex justify-center items-center">
+        <h1 class="text-[38px] font-semibold text-slate-200 font-mono max-md:text-[26px]">
+            Tic
+            <span class="text-red-600 m-0">X</span>
+            Tac
+            <span class="text-blue-600 m-0">O</span>
+            Toe Game
+        </h1>
+    </nav>
+    <main class="p-5 h-full w-full">
+        <div id="players-Cards" class="flex flex-wrap items-center justify-center">
+            <div class="card">
+                <img src="assets/Player 1.png" alt="first character image">
+                <input type="text" class="border text-sm rounded-lg block w-full p-1.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-900 focus:border-blue-900 outline-none" 
+                placeholder="Player 1's Name"  required>
+            </div>
+            <div class="card">
+                <img src="assets/Player 2.png" alt="second character image">
+                <input type="text" class="border text-sm rounded-lg block w-full p-1.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-900 focus:border-blue-900 outline-none" 
+                placeholder="Player 2's Name"  required>
+            </div>
+        </div>
+    </main>
+    
 </body>
 </html>
