@@ -1,5 +1,5 @@
 ////////////// This Script is for both the Game Model and its UI //////////////////////
-import { updateScore,displayWinner,getNames } from './script.js';
+import { updateScore,displayWinner,getNames, updateTies } from './script.js';
 
 
 export let game = (
@@ -71,8 +71,18 @@ export let game = (
                     row.classList.add("flex", "flex-row", "w-full", "justify-center");
                     for (let j = 0; j < 3; j++) {
                         let cell = document.createElement("div");
-                        cell.classList.add("bg-black","flex","justify-center","items-center","text-white", 'w-28', 'h-28', 'border','border-white', 'text-center', 'text-6xl', 'font-bold', 'cursor-pointer');
+                        cell.classList.add("bg-blue-200","flex","justify-center","items-center","text-white", 'w-28', 'h-28', 'border','border-indigo-950', 'text-center', 'text-6xl', 'font-bold', 'cursor-pointer');
                         cell.id = "cell" + i + j;
+                        if (board[i][j] == null){
+                            cell.textContent = "";
+                        } else {
+                            cell.textContent = board[i][j];
+                            if (board[i][j] == player1.getMark()){
+                                cell.style.color = '#dc2626';
+                            } else {
+                                cell.style.color = '#1d4ed8';
+                            }
+                        }
                         cell.textContent = (board[i][j] == null) ? "" : board[i][j];
                         cell.addEventListener("click", function () {
                             if (board[i][j] == null && !checkWin() && !checkTie()) {
@@ -82,8 +92,8 @@ export let game = (
                                     updateScore();
                                     displayWinner(candidatePlayer.getName());
                                 } else if (checkTie()) {
-                                    console.log("Tie!");
                                     ties++;
+                                    updateTies(ties);
                                 } else {
                                     togglePlayer();
                                 }

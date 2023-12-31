@@ -12,7 +12,6 @@ const player2Input = player2Button.previousElementSibling;
 
 let player1Name = 'Player 1';
 let player2Name = 'Player 2';
-
 let imgSrc = './assets/check.svg';
 let player1Ready = false;
 let player2Ready = false;
@@ -92,7 +91,12 @@ function ifReady() {
         player2Score.textContent = player2ScoreText;
         player2Card.appendChild(player2Score);
 
-
+        const tiesPtag = document.createElement('p');
+        tiesPtag.id = 'ties';
+        tiesPtag.classList.add('text-center', 'text-2xl', 'text-slate-200' , 'max-md:translate-y-[-50%]');
+        let tiesText = 'Ties: 0';
+        tiesPtag.textContent = tiesText;
+        document.querySelector('#bottom-part').appendChild(tiesPtag);
 
         //// Reset Button ////
         const resetButton = document.createElement('button');
@@ -128,6 +132,19 @@ export function updateScore() {
     player2Score.textContent = 'Score: ' + game.player2.getScore();
 }
 
+export function updateTies(ties) {
+    const tiesPtag = document.getElementById('ties');
+    tiesPtag.textContent = 'Ties: ' + ties;
+    const tieDiv = document.querySelector('#announcment');
+    const tiePTag = document.createElement('p');
+    tiePTag.classList.add('text-center', 'text-3xl', 'font-bold', 'text-slate-200');
+    tiePTag.textContent = "it's a Tie!";
+    tieDiv.innerHTML = '';
+    tieDiv.appendChild(tiePTag);
+    jsConfetti.addConfetti({
+        emojis : ['😔'],
+    });
+}
 
 export function displayWinner(name) {
     const winnerDiv = document.querySelector('#announcment');
