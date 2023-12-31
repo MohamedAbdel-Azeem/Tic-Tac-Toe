@@ -71,9 +71,8 @@ function ifReady() {
         const player1Card = document.getElementById('player-1-card');
         const player2Card = document.getElementById('player-2-card');
     
-        player1Card.style.transform = 'translateX(-120%)';
-        
-        player2Card.style.transform = 'translateX(120%)';
+        player1Card.classList.add('translate-x-[-120%]', 'max-md:scale-50','max-md:translate-x-[-35%]','max-md:translate-y-[160%]');
+        player2Card.classList.add('translate-x-[120%]','max-md:scale-50','max-md:translate-x-[35%]','max-md:translate-y-[22%]');
         
         /////////////////////////// Game Starts Here ///////////////////////////
         const theGame = game;
@@ -99,7 +98,7 @@ function ifReady() {
         const resetButton = document.createElement('button');
         resetButton.id = 'reset-button';
         resetButton.innerText = 'Reset Game';
-        resetButton.classList.add('bg-slate-200', 'text-slate-900', 'text-2xl', 'font-bold', 'rounded', 'p-2', 'max-md:w-1/2', 'mx-auto', 'mt-4', 'hover:bg-slate-300', 'transition', 'duration-300', 'ease-in-out');
+        resetButton.classList.add('bg-slate-200', 'text-slate-900', 'text-2xl', 'font-bold', 'rounded', 'p-2', 'max-md:w-1/2', 'mx-auto', 'mt-4', 'hover:bg-slate-300', 'transition', 'duration-300', 'ease-in-out','max-md:translate-y-[-50%]');
         document.querySelector('#bottom-part').appendChild(resetButton);
         resetButton.addEventListener('click', function () {
             game.playGame();
@@ -112,7 +111,7 @@ function ifReady() {
         const backButton = document.createElement('button');
         backButton.id = 'back-button';
         backButton.innerText = 'Go Back';
-        backButton.classList.add('bg-slate-200', 'text-slate-900', 'text-2xl', 'font-bold', 'rounded', 'p-2', 'max-md:w-1/2', 'mx-auto', 'mt-4', 'hover:bg-slate-300', 'transition', 'duration-300', 'ease-in-out');
+        backButton.classList.add('bg-slate-200', 'text-slate-900', 'text-2xl', 'font-bold', 'rounded', 'p-2', 'max-md:w-1/2', 'mx-auto', 'mt-4', 'hover:bg-slate-300', 'transition', 'duration-300', 'ease-in-out','max-md:translate-y-[-50%]');
         document.querySelector('#bottom-part').appendChild(backButton);
         backButton.addEventListener('click', function () {
             location.reload();
@@ -127,7 +126,6 @@ export function updateScore() {
     const player2Score = document.getElementById('player-2-score');
     player1Score.textContent = 'Score: ' + game.player1.getScore();
     player2Score.textContent = 'Score: ' + game.player2.getScore();
-    
 }
 
 
