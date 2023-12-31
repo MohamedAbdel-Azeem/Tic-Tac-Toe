@@ -1,5 +1,5 @@
 import { game } from "./gameScript.js";
-
+const jsConfetti = new JSConfetti()
 ////////////////// This is Script is mainly for the UI and Dom Manipulation //////////////////////
 
 
@@ -75,9 +75,9 @@ function ifReady() {
         
         player2Card.style.transform = 'translateX(120%)';
         
-
+        /////////////////////////// Game Starts Here ///////////////////////////
         const theGame = game;
-        theGame.startNewGame();
+        theGame.playGame();
 
         const player1Score = document.createElement('p');
         player1Score.id = 'player-1-score';
@@ -89,18 +89,35 @@ function ifReady() {
         const player2Score = document.createElement('p');
         player2Score.id = 'player-2-score';
         player2Score.classList.add('text-center', 'text-2xl', 'text-slate-200');
-        let player2ScoreText = 'Score: '+ game.player2.getScore();
+        let player2ScoreText = 'Score: 0';
         player2Score.textContent = player2ScoreText;
         player2Card.appendChild(player2Score);
 
+
+
+        //// Reset Button ////
         const resetButton = document.createElement('button');
         resetButton.id = 'reset-button';
         resetButton.innerText = 'Reset Game';
         resetButton.classList.add('bg-slate-200', 'text-slate-900', 'text-2xl', 'font-bold', 'rounded', 'p-2', 'max-md:w-1/2', 'mx-auto', 'mt-4', 'hover:bg-slate-300', 'transition', 'duration-300', 'ease-in-out');
         document.querySelector('#bottom-part').appendChild(resetButton);
         resetButton.addEventListener('click', function () {
-            game.startNewGame();
+            game.playGame();
+            const winnerDiv = document.querySelector('#announcment');
+            winnerDiv.innerHTML = '';
         });
+
+
+        //// Go Back Page ////
+        const backButton = document.createElement('button');
+        backButton.id = 'back-button';
+        backButton.innerText = 'Go Back';
+        backButton.classList.add('bg-slate-200', 'text-slate-900', 'text-2xl', 'font-bold', 'rounded', 'p-2', 'max-md:w-1/2', 'mx-auto', 'mt-4', 'hover:bg-slate-300', 'transition', 'duration-300', 'ease-in-out');
+        document.querySelector('#bottom-part').appendChild(backButton);
+        backButton.addEventListener('click', function () {
+            location.reload();
+        });
+
     }
 }
 
@@ -110,4 +127,25 @@ export function updateScore() {
     const player2Score = document.getElementById('player-2-score');
     player1Score.textContent = 'Score: ' + game.player1.getScore();
     player2Score.textContent = 'Score: ' + game.player2.getScore();
+    
+}
+
+
+export function displayWinner(name) {
+    const winnerDiv = document.querySelector('#announcment');
+    const winnerPTag = document.createElement('p');
+    winnerPTag.classList.add('text-center', 'text-3xl', 'font-bold');
+    if (name == player1Name){
+        winnerPTag.classList.add('text-red-500');
+    } else{
+        winnerPTag.classList.add('text-blue-400');
+    }
+    winnerPTag.textContent = name+' Won!';
+    winnerDiv.innerHTML = '';
+    winnerDiv.appendChild(winnerPTag);
+    jsConfetti.addConfetti()
+}
+
+export function getNames(){
+    return [player1Name, player2Name];
 }

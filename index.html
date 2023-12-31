@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe Game</title>
     <link href="/output.css" rel="stylesheet">
-    <script defer src="script.js" type="module"></script>
+    <script defer src="./script.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 </head>
 <body class="flex flex-col h-full w-full bg-cyan-800">
     <nav class="w-full h-20 bg-sky-950 flex justify-center items-center">
@@ -18,8 +19,10 @@
         </h1>
     </nav>
     <main class="p-5 h-full w-full">
-        <div class="bg-amber-300 opacity-80 text-center w-auto px-5" id="hint">
-            <p class="text-blue-950 opacity-100">Hint Player 1 Starts first and plays using X</p>
+        <div id="announcment" class="h-8">
+            <div class="bg-amber-300 opacity-80 text-center w-auto px-5" id="hint">
+                <p class="text-blue-950 opacity-100">Hint Player 1 Starts first and plays using X</p>
+            </div>
         </div>
         <div id="players-Cards" class="flex flex-wrap items-center justify-center">
             <div class="card" id="player-1-card">
@@ -37,6 +40,6 @@
             </div>
         </div>
     </main>
-    <div id="bottom-part" class="flex justify-center items-center mt-7"></div>
+    <div id="bottom-part" class="flex flex-col justify-center items-center mt-7"></div>
 </body>
 </html>

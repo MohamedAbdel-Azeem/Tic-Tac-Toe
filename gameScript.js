@@ -1,5 +1,5 @@
 ////////////// This Script is for both the Game Model and its UI //////////////////////
-import { updateScore } from './script.js';
+import { updateScore,displayWinner,getNames } from './script.js';
 
 
 export let game = (
@@ -9,19 +9,23 @@ export let game = (
         const createUser = function (name, mark) {
             let score = 0;
             const getName = ()=> name;
+            const setname = (newName)=> name = newName;
             const getMark = ()=> mark;
             const getScore = ()=> score;
             const addScore = ()=> score++;
-            return {getName, getMark, getScore, addScore};
+            return {getName,setname ,getMark, getScore, addScore};
         }
 
-        let player1 = createUser('Player 1', "X");
-        let player2 = createUser('Player 2', "O");
         let ties = 0;
-        const startNewGame = function () {
+        
+        let player1 = createUser("player 1", "X");
+        let player2 = createUser("player 2", "O");
+        const playGame = function () {
+            const names = getNames();
+            player1.setname(names[0]);
+            player2.setname(names[1]);
             let currentPlayer = 0;
             const getBoard = ()=> board;
-            const getCurrentPlayer = ()=> currentPlayer;
             const togglePlayer = ()=> (currentPlayer == 0) ? currentPlayer = 1 : currentPlayer = 0;
             board = Array.from({ length: 3 }, () => Array(3).fill(null));
 
@@ -60,6 +64,7 @@ export let game = (
 
             function drawBoard() {
                 const gameDiv = document.querySelector("#game-board");
+                let candidatePlayer = (currentPlayer == 0) ? player1 : player2;
                 gameDiv.innerHTML = "";
                 for (let i = 0; i < 3; i++) { // initialize game board
                     let row = document.createElement("div");
@@ -75,6 +80,7 @@ export let game = (
                                 cell.textContent = board[i][j];
                                 if (checkWin()) {
                                     updateScore();
+                                    displayWinner(candidatePlayer.getName());
                                 } else if (checkTie()) {
                                     console.log("Tie!");
                                     ties++;
@@ -90,9 +96,9 @@ export let game = (
                 }
             }
             drawBoard();
-            return {getBoard, getCurrentPlayer, togglePlayer};
+            return {getBoard, togglePlayer};
         }
-        return {startNewGame, player1, player2, ties};
+        return {playGame, player1, player2, ties};
     }
 )();
 

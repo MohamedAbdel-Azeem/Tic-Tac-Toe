@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "tailwindcss": "^3.4.0"
+  },
+  "dependencies": {
+    "js-confetti": "^0.12.0"
   }
 }
