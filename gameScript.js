@@ -1,3 +1,7 @@
+////////////// This Script is for both the Game Model and its UI //////////////////////
+import { updateScore } from './script.js';
+
+
 export let game = (
     function () {
         let board;
@@ -11,8 +15,8 @@ export let game = (
             return {getName, getMark, getScore, addScore};
         }
 
-        let player1 = createUser("Player 1", "X");
-        let player2 = createUser("Player 2", "O");
+        let player1 = createUser('Player 1', "X");
+        let player2 = createUser('Player 2', "O");
         let ties = 0;
         const startNewGame = function () {
             let currentPlayer = 0;
@@ -23,7 +27,8 @@ export let game = (
 
             function checkWin() {
                 let win = false;
-                let mark = (currentPlayer == 0) ? player1.getMark() : player2.getMark();
+                let candidatePlayer = (currentPlayer == 0) ? player1 : player2;
+                let mark = candidatePlayer.getMark();
                 // check rows
                 for (let i = 0; i < 3; i++) {
                     if (board[i][0] == mark && board[i][1] == mark && board[i][2] == mark) {
@@ -45,7 +50,7 @@ export let game = (
                 if (board[0][2] == mark && board[1][1] == mark && board[2][0] == mark) {
                     win = true;
                 }
-                if (win) console.log("Player " + (currentPlayer + 1) + " wins!");
+                if (win) candidatePlayer.addScore();
                 return win;
             }
 
@@ -58,10 +63,10 @@ export let game = (
                 gameDiv.innerHTML = "";
                 for (let i = 0; i < 3; i++) { // initialize game board
                     let row = document.createElement("div");
-                    row.classList.add("row");
+                    row.classList.add("flex", "flex-row", "w-full", "justify-center");
                     for (let j = 0; j < 3; j++) {
                         let cell = document.createElement("div");
-                        cell.classList.add("cell");
+                        cell.classList.add("bg-black","flex","justify-center","items-center","text-white", 'w-28', 'h-28', 'border','border-white', 'text-center', 'text-6xl', 'font-bold', 'cursor-pointer');
                         cell.id = "cell" + i + j;
                         cell.textContent = (board[i][j] == null) ? "" : board[i][j];
                         cell.addEventListener("click", function () {
@@ -69,8 +74,7 @@ export let game = (
                                 board[i][j] = (currentPlayer == 0) ? player1.getMark() : player2.getMark();
                                 cell.textContent = board[i][j];
                                 if (checkWin()) {
-                                    console.log("Player " + (currentPlayer + 1) + " wins!");
-                                    (currentPlayer == 0) ? player1.addScore() : player2.addScore();
+                                    updateScore();
                                 } else if (checkTie()) {
                                     console.log("Tie!");
                                     ties++;
@@ -92,10 +96,6 @@ export let game = (
     }
 )();
 
-// game.startNewGame();
 
 
-// document.querySelector("#reset-button")
-// .addEventListener("click", function () {
-//     game.startNewGame();
-// });
+
