@@ -54,6 +54,16 @@ player2Button.addEventListener('click', function() {
     ifReady();
 });
 
+/**
+ * Executes the game logic if both players are ready.
+ * Removes the hint and player images.
+ * Translates and scales player cards.
+ * Starts the game.
+ * Creates and appends score elements for each player.
+ * Creates and appends a ties element.
+ * Creates and appends a reset button.
+ * Creates and appends a go back button.
+ */
 function ifReady() {
     if (player1Ready && player2Ready) {
         
@@ -115,7 +125,7 @@ function ifReady() {
         const backButton = document.createElement('button');
         backButton.id = 'back-button';
         backButton.innerText = 'Go Back';
-        backButton.classList.add('bg-slate-200', 'text-slate-900', 'text-2xl', 'font-bold', 'rounded', 'p-2', 'max-md:w-1/2', 'mx-auto', 'mt-4', 'hover:bg-slate-300', 'transition', 'duration-300', 'ease-in-out','max-md:translate-y-[-50%]');
+        backButton.classList.add('bg-slate-200', 'text-slate-900', 'text-2xl', 'font-bold', 'rounded', 'p-2', 'max-md:w-1/2', 'mx-auto', 'mt-4','hover:bg-slate-300', 'transition', 'duration-300', 'ease-in-out','max-md:translate-y-[-50%]');
         document.querySelector('#bottom-part').appendChild(backButton);
         backButton.addEventListener('click', function () {
             location.reload();

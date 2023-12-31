@@ -6,6 +6,12 @@ export let game = (
     function () {
         let board;
         
+        /**
+         * Creates a user object with a name, mark, and score.
+         * @param {string} name - The name of the user.
+         * @param {string} mark - The mark (X or O) of the user.
+         * @returns {Object} The user object.
+         */
         const createUser = function (name, mark) {
             let score = 0;
             const getName = ()=> name;
@@ -20,6 +26,11 @@ export let game = (
         
         let player1 = createUser("player 1", "X");
         let player2 = createUser("player 2", "O");
+
+        /**
+         * Plays the Tic-Tac-Toe game.
+         * @returns {Object} An object with the game board and a function to toggle the current player.
+         */
         const playGame = function () {
             const names = getNames();
             player1.setname(names[0]);
@@ -29,6 +40,10 @@ export let game = (
             const togglePlayer = ()=> (currentPlayer == 0) ? currentPlayer = 1 : currentPlayer = 0;
             board = Array.from({ length: 3 }, () => Array(3).fill(null));
 
+            /**
+             * Checks if the current player has won the game.
+             * @returns {boolean} True if the current player has won, false otherwise.
+             */
             function checkWin() {
                 let win = false;
                 let candidatePlayer = (currentPlayer == 0) ? player1 : player2;
@@ -58,10 +73,17 @@ export let game = (
                 return win;
             }
 
+            /**
+             * Checks if the game is a tie.
+             * @returns {boolean} True if the game is a tie, false otherwise.
+             */
             function checkTie() {
                 return ! checkWin() && board.every(row => row.every(cell => cell != null));
             }
 
+            /**
+             * Draws the game board in the HTML document.
+             */
             function drawBoard() {
                 const gameDiv = document.querySelector("#game-board");
                 let candidatePlayer = (currentPlayer == 0) ? player1 : player2;
