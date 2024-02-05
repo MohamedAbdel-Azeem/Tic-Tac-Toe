@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe Game</title>
+    <link href="./output.css" rel="stylesheet">
+    <script defer src="./script.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+</head>
+<body class="flex flex-col h-full w-full bg-cyan-800">
+    <nav class="w-full h-20 bg-sky-950 flex justify-center items-center">
+        <h1 class="text-[38px] font-semibold text-slate-200 font-mono max-md:text-[26px]">
+            Tic
+            <span class="text-red-600 m-0">X</span>
+            Tac
+            <span class="text-blue-600 m-0">O</span>
+            Toe Game
+        </h1>
+    </nav>
+    <main class="p-5 h-full w-full">
+        <div id="announcment" class="h-8">
+            <div class="bg-amber-300 opacity-80 text-center w-auto px-5" id="hint">
+                <p class="text-blue-950 opacity-100">Hint Player 1 Starts first and plays using X</p>
+            </div>
+        </div>
+        <div id="players-Cards" class="flex items-center justify-center max-md:flex-col">
+            <div class="card" id="player-1-card">
+                <img src="assets/Player 1.png" alt="first character image">
+                <input type="text" class="border text-sm rounded-lg block w-full p-1.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-900 focus:border-blue-900 outline-none" 
+                placeholder="Player 1's Name"  required>
+                <button id="player-1-ready" class="bg-green-600 text-white font-semibold rounded-lg px-3 py-1.5 mt-2 hover:bg-green-700 hover:shadow-md hover:ring-1 hover:ring-green-800">Ready</button>
+            </div>
+            <div id="game-board" class="flex flex-col border border-indigo-950 justify-center items-center mt-10 rounded-sm shadow-sm max-md:absolute max-md:top-32"></div>
+            <div class="card" id="player-2-card">
+                <img src="assets/Player 2.png" alt="second character image">
+                <input type="text" class="border text-sm rounded-lg block w-full p-1.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-900 focus:border-blue-900 outline-none" 
+                placeholder="Player 2's Name"  required>
+                <button id="player-2-ready" class="bg-green-600 text-white font-semibold rounded-lg px-3 py-1.5 mt-2 hover:bg-green-700 hover:shadow-md hover:ring-1 hover:ring-green-800">Ready</button>
+            </div>
+        </div>
+    </main>
+    <div id="bottom-part" class="flex flex-col justify-center items-center mb-7"></div>
+    <footer class="w-full h-10 bg-sky-950 flex justify-center items-center fixed bottom-0">
+        <p class="text-slate-200 font-mono text-[18px] max-md:text-[14px]"> 
+            Made By
+            <a href="https://github.com/MohamedAbdel-Azeem/Tic-Tac-Toe" class="text-red-600">
+                Mohamed Abdel-Azeem <img src="assets/github-mark-white.svg" alt="github logo" class="inline-block w-4 h-4">
+            </a>
+            </p>
+    </footer>
+</body>
+</html>
