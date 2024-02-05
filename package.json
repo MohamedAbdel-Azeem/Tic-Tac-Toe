@@ -5,7 +5,8 @@
   "main": "gameScript.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tailwindcss -i ./src/input.css -o ./output.css --watch"
+    "dev": "tailwindcss -i ./src/input.css -o ./build/output.css --watch",
+    "deploy": "git subtree push --prefix build origin gh-pages"
   },
   "author": "",
   "license": "ISC",
